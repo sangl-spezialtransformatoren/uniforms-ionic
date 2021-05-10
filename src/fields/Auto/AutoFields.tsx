@@ -10,22 +10,26 @@ export type AutoFieldsProps = {
     omitFields?: string[];
 };
 
-export const AutoFields = (
-    {
-        autoField = AutoField,
-        element = "div",
-        fields,
-        omitFields = [],
-        ...props
-    }: AutoFieldsProps) => {
+export function createAutoFields(AutoField: AutoField) {
+    return (
+        {
+            autoField = AutoField,
+            element = "div",
+            fields,
+            omitFields = [],
+            ...props
+        }: AutoFieldsProps) => {
 
-    const {schema} = useForm()
+        const {schema} = useForm()
 
-    return createElement(
-        element,
-        props,
-        (fields ?? schema.getSubfields())
-        .filter(field => !omitFields.includes(field))
-        .map(field => createElement(autoField, {key: field, name: field}))
-    )
+        return createElement(
+            element,
+            props,
+            (fields ?? schema.getSubfields())
+            .filter(field => !omitFields.includes(field))
+            .map(field => createElement(autoField, {key: field, name: field}))
+        )
+    }
 }
+
+export const AutoFields = createAutoFields(AutoField)

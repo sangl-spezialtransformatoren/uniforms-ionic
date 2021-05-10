@@ -8,29 +8,33 @@ export type NestFieldProps = HTMLFieldProps<object,
     HTMLIonItemGroupElement,
     {itemProps?: object}>;
 
-function Nest({
-                  children,
-                  fields,
-                  itemProps,
-                  label,
-                  ...props
-              }: NestFieldProps) {
-    return (
-        <>
-            {label && <IonListHeader>
-                {label}
-            </IonListHeader>
-            }
-            <IonItemGroup className={"nest-container"}>
-                <>
-                    {children ||
-                    fields.map(field => (
-                        <AutoField key={field} name={field} {...itemProps} />
-                    ))}
-                </>
-            </IonItemGroup>
-        </>
-    )
+export function createNestField(AutoField: AutoField) {
+    function Nest({
+                      children,
+                      fields,
+                      itemProps,
+                      label,
+                      ...props
+                  }: NestFieldProps) {
+        return (
+            <>
+                {label && <IonListHeader>
+                    {label}
+                </IonListHeader>
+                }
+                <IonItemGroup className={"nest-container"}>
+                    <>
+                        {children ||
+                        fields.map(field => (
+                            <AutoField key={field} name={field} {...itemProps} />
+                        ))}
+                    </>
+                </IonItemGroup>
+            </>
+        )
+    }
+
+    return connectField(Nest)
 }
 
-export const NestField = connectField(Nest)
+export const NestField = createNestField(AutoField)

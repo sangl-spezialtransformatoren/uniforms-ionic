@@ -4,6 +4,7 @@ import {BoolField, DateField, ListField, NestField, NumField, RadioField, Select
 
 
 export type AutoFieldProps = Parameters<typeof AutoField>[0];
+export type AutoField = ReturnType<typeof createAutoField>
 
 export const AutoField = createAutoField(props => {
     if (props.allowedValues) {

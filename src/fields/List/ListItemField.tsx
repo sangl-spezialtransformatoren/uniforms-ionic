@@ -6,13 +6,17 @@ import {AutoField} from "../Auto/AutoField"
 
 export type ListItemFieldProps = {children?: ReactNode; value?: unknown};
 
-function ListItem({children = <AutoField label={null} name=""/>}: ListItemFieldProps) {
-    return (
-        <div className={"list-item-container"}>
-            <ListDelField name=""/>
-            {children}
-        </div>
-    )
+export function createListItemField(AutoField: AutoField) {
+    function ListItem({children = <AutoField label={null} name=""/>}: ListItemFieldProps) {
+        return (
+            <div className={"list-item-container"}>
+                <ListDelField name=""/>
+                {children}
+            </div>
+        )
+    }
+
+    return connectField(ListItem, {initialValue: false})
 }
 
-export const ListItemField = connectField(ListItem, {initialValue: false})
+export const ListItemField = createListItemField(AutoField)

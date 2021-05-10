@@ -1,10 +1,12 @@
 import React, {Children, cloneElement, isValidElement} from "react"
 import {connectField, HTMLFieldProps} from "uniforms"
 
-import {IonLabel, IonListHeader} from "@ionic/react"
+import {IonListHeader} from "@ionic/react"
 import {createListItemField, ListItemField} from "./ListItemField"
 import {createListAddField} from "./ListAddField"
 import {AutoField} from "../Auto/AutoField"
+import {Label} from "../../components/Label/Label"
+
 
 export type ListFieldProps = HTMLFieldProps<unknown[],
     HTMLUListElement,
@@ -21,14 +23,17 @@ export function createListField(AutoField: AutoField) {
                       itemProps,
                       label,
                       value,
+                      error,
+                      errorMessage,
+                      showInlineError,
                       ...props
                   }: ListFieldProps) {
         return (
             <>
                 <IonListHeader style={{paddingRight: 4}}>
-                    <IonLabel>
+                    <Label error={error} errorMessage={errorMessage} showInlineError={showInlineError}>
                         {label}
-                    </IonLabel>
+                    </Label>
                     <ListAddField initialCount={initialCount} name="$"/>
                 </IonListHeader>
                 <div style={{paddingLeft: 22}}>

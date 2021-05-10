@@ -1,0 +1,53 @@
+@import "react-day-picker/lib/style.css";
+
+ion-input {
+  text-align: end;
+}
+
+.item-has-error {
+  --full-highlight-height: calc(var(--highlight-height) * var(--show-full-highlight));
+  --inset-highlight-height: calc(var(--highlight-height) * var(--show-inset-highlight));
+  --highlight-background: var(--highlight-color-invalid);
+}
+
+ion-label.item-has-error {
+  cursor: pointer;
+  pointer-events: all !important;
+  color: var(--ion-color-danger-shade) !important;
+}
+
+.textarea-wrapper {
+  height: unset;
+}
+
+textarea {
+  height: unset;
+}
+
+.day-input-modal {
+  --width: 310px;
+  --height: 340px;
+}
+
+.list-item-container {
+  padding-left: 24px;
+}
+
+.nest-container {
+  padding-left: 20px;
+}
+
+.list-item-container > .nest-container {
+  padding-left: 0;
+}
+
+.date-input-button {
+  padding-inline-end: 0 !important;
+  font-weight: normal !important;;
+  text-transform: none !important;;
+  margin-top: 3px !important;
+}
+
+.list-buttons {
+  color: var(--ion-color-medium-shade)
+}

@@ -1,0 +1,15 @@
+ion-content {
+    --background: #f5f5f5;
+}
+
+div.main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 50px;
+}
+
+ion-card.formCard {
+    max-width: 400px;
+    width: 100%;
+}

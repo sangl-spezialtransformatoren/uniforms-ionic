@@ -1,0 +1,33 @@
+{
+  "name": "uniforms-ionic",
+  "version": "0.1.0",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@ionic/react": "^5.6.6",
+    "ionicons": "^5.5.1",
+    "react": "^17.0.2",
+    "react-day-picker": "^7.4.10",
+    "react-dom": "^17.0.2",
+    "uniforms": "^3.4.0"
+  },
+  "scripts": {
+    "build": "npm run build:tsc && npm run build:sass",
+    "build:tsc": "tsc",
+    "build:sass": "sass src/style/uniforms-ionic.scss lib/uniforms-ionic.css",
+    "start": "npm run start:tsc & npm run start:sass",
+    "start:tsc": "tsc --watch",
+    "start:sass": "sass --watch src/style/uniforms-ionic.scss lib/uniforms-ionic.css",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/invariant": "^2.2.34",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^15.0.2",
+    "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.3",
+    "sass": "^1.32.12",
+    "typescript": "^4.2.4"
+  }
+}

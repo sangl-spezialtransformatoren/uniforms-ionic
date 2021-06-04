@@ -1,11 +1,21 @@
 import invariant from "invariant"
 import {createAutoField} from "uniforms"
-import {BoolField, DateField, ListField, NestField, NumField, RadioField, SelectField, TextField} from "../"
+import {
+    BoolField,
+    DateField,
+    DateIntervalField,
+    ListField,
+    NestField,
+    NumField,
+    RadioField,
+    SelectField,
+    TextField
+} from "../"
 
 
 export type AutoFieldProps = Parameters<typeof AutoField>[0];
 export type AutoField = ReturnType<typeof createAutoField>
-
+let log = console.log
 export const AutoField = createAutoField(props => {
     if (props.allowedValues) {
         return props.checkboxes && props.fieldType !== Array
@@ -25,6 +35,9 @@ export const AutoField = createAutoField(props => {
         case Object:
             return NestField
         case String:
+            if (props?.field?.format && props.field.format === "date-time-interval") {
+                return DateIntervalField
+            }
             return TextField
     }
 

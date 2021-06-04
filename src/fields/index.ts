@@ -10,6 +10,9 @@ export type {BoolFieldProps} from "./Boolean/BoolField"
 export {DateField} from "./Date/DateField"
 export type {DateFieldProps} from "./Date/DateField"
 
+export {DateIntervalField} from "./DateInterval/DateInterval"
+export type {DateIntervalFieldProps} from "./DateInterval/DateInterval"
+
 export {ErrorField} from "./Error/ErrorField"
 export type {ErrorFieldProps} from "./Error/ErrorField"
 

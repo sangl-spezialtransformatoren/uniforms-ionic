@@ -4,6 +4,7 @@ import {DateInput, DateInputHandle} from "../../components/DateInput/DayInput"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
 
+// TODO: simpler!
 
 export type DateFieldProps = HTMLFieldProps<string,
     typeof Container,

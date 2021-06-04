@@ -22,6 +22,14 @@ const schema = {
             },
             required: ["street", "zip", "state"]
         },
+        interval: {
+            "title": "Zeitraum",
+            "type": "string",
+            "readOnly": true,
+            "format": "date-time-interval",
+            "default": "2021-01-15T00:00:00/2021-02-03T00:00:00",
+            "const": "2021-01-15T00:00:00/2021-02-03T00:00:00"
+        },
         participants: {
             type: "array",
             items: {
@@ -42,6 +50,13 @@ const schema = {
 
 const ajv = new Ajv({allErrors: true, useDefaults: true})
 addFormats(ajv)
+ajv.addFormat(
+    "date-time-interval",
+    {
+        type: "string",
+        validate: () => true
+    }
+)
 
 function createValidator(schema: object) {
     const validator = ajv.compile(schema)
@@ -53,7 +68,7 @@ function createValidator(schema: object) {
 }
 
 const schemaValidator = createValidator(schema)
-
+let log = console.log
 export const bridge = new JSONSchemaBridge(schema, schemaValidator)
 
 function App() {
@@ -66,7 +81,7 @@ function App() {
                             {bridge.schema?.title}
                         </IonCardTitle>
                     </IonCardHeader>
-                    <AutoForm schema={bridge} showInlineError={true}>
+                    <AutoForm schema={bridge} showInlineError={true} onChangeModel={(data: any) => log(data)}>
                         <AutoFields/>
                         <SubmitField/>
                     </AutoForm>

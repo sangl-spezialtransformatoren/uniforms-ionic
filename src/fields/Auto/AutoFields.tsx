@@ -1,4 +1,4 @@
-import {ComponentType, createElement} from "react"
+import React, {ComponentType, createElement} from "react"
 import {useForm} from "uniforms"
 
 import {AutoField} from "./AutoField"
@@ -14,7 +14,7 @@ export function createAutoFields(AutoField: AutoField) {
     return (
         {
             autoField = AutoField,
-            element = "div",
+            element = React.Fragment,
             fields,
             omitFields = [],
             ...props

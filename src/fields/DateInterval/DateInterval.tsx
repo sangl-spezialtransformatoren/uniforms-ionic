@@ -44,7 +44,15 @@ function DateInterval_(
 
     let handleClick = useCallback((day) => {
         if (selectedStartDate) {
-            let interval = Interval.fromDateTimes(new Date(selectedStartDate), day)
+            let selectedDay = day
+            let selectedStartDay = new Date(selectedStartDate)
+            let interval
+
+            if (selectedDay > selectedStartDay) {
+                interval = Interval.fromDateTimes(selectedStartDay, selectedDay)
+            } else {
+                interval = Interval.fromDateTimes(selectedDay, selectedStartDay)
+            }
             setSelectedStartDate(undefined)
             onChange(interval.toISO())
             setModalOpen(false)

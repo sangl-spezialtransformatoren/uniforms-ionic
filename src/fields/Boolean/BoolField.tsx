@@ -17,8 +17,7 @@ const Bool: React.FC<BoolFieldProps> = (
         value,
         error,
         errorMessage,
-        showInlineError,
-        ...props
+        showInlineError
     }) => {
     return <>
         <Container
@@ -34,7 +33,7 @@ const Bool: React.FC<BoolFieldProps> = (
             <IonCheckbox
                 slot={"end"}
                 checked={value}
-                disabled={disabled}
+                disabled={disabled || readOnly}
                 id={id}
                 name={name}
                 onIonChange={(e) => {

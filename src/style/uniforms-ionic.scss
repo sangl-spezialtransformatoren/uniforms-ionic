@@ -27,6 +27,8 @@ textarea {
 .day-input-modal {
   --width: 310px;
   --height: 340px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
 }
 
 .list-item-container {
@@ -55,6 +57,8 @@ textarea {
 .day-interval-modal {
   --width: 310px;
   --height: 340px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
 }
 
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -75,4 +79,3 @@ textarea {
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
 }
-

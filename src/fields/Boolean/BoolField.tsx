@@ -33,6 +33,7 @@ const Bool: React.FC<BoolFieldProps> = (
             <IonCheckbox
                 slot={"end"}
                 checked={value}
+                indeterminate={value === undefined || value === null}
                 disabled={disabled || readOnly}
                 id={id}
                 name={name}

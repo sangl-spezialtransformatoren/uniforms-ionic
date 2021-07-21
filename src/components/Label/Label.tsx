@@ -24,6 +24,7 @@ export const Label: React.FC<LabelProps> = ({children, error, errorMessage, show
         let style: any = {}
         if (readOnly) {
             style["color"] = "initial"
+            style["opacity"] = 1
         }
         return style
     }, [readOnly])

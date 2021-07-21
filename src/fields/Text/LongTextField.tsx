@@ -1,4 +1,4 @@
-import React, {Ref} from "react"
+import React, {Ref, useState} from "react"
 import {connectField, filterDOMProps, HTMLFieldProps} from "uniforms"
 import {IonTextarea} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
@@ -23,6 +23,7 @@ function LongText({
                       showInlineError,
                       ...props
                   }: LongTextFieldProps) {
+    let [autogrow, setAutogrow] = useState(false)
     return (
         <Container
             error={error}
@@ -39,11 +40,14 @@ function LongText({
                 {label}
             </Label>
             <IonTextarea
-                autoGrow={!!(value?.length && value.length > 0)}
+                autoGrow={autogrow && !!(value?.length && value.split("\n").length > 1) && !readOnly && !disabled}
                 disabled={disabled}
                 id={id}
                 name={name}
-                onIonChange={event => event.detail.value && onChange(event.detail.value)}
+                onIonChange={event => {
+                    setAutogrow(true)
+                    event.detail.value && onChange(event.detail.value)
+                }}
                 placeholder={placeholder}
                 readonly={readOnly}
                 ref={inputRef}

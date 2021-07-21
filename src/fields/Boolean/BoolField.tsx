@@ -23,11 +23,13 @@ const Bool: React.FC<BoolFieldProps> = (
         <Container
             error={error}
             errorMessage={errorMessage}
-            showInlineError={showInlineError}>
+            showInlineError={showInlineError}
+            readOnly={readOnly}>
             <Label
                 error={error}
                 errorMessage={errorMessage}
-                showInlineError={showInlineError}>
+                showInlineError={showInlineError}
+                readOnly={readOnly}>
                 {label}
             </Label>
             <IonCheckbox
@@ -37,6 +39,8 @@ const Bool: React.FC<BoolFieldProps> = (
                 disabled={disabled || readOnly}
                 id={id}
                 name={name}
+                style={{opacity: readOnly && 1}}
+                color={readOnly && !disabled ? "dark" : undefined}
                 onIonChange={(e) => {
                     if (!disabled && !readOnly) {
                         onChange(e.detail.checked)

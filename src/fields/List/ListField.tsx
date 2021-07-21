@@ -26,6 +26,7 @@ export function createListField(AutoField: AutoField) {
                       error,
                       errorMessage,
                       showInlineError,
+                      readOnly,
                       ...props
                   }: ListFieldProps) {
         return (
@@ -34,7 +35,7 @@ export function createListField(AutoField: AutoField) {
                     <Label error={error} errorMessage={errorMessage} showInlineError={showInlineError}>
                         {label}
                     </Label>
-                    <ListAddField initialCount={initialCount} name="$"/>
+                    <ListAddField initialCount={initialCount} readOnly={readOnly} name="$"/>
                 </IonListHeader>
                 <div style={{paddingLeft: 22}}>
                     {value?.map((item, itemIndex) =>

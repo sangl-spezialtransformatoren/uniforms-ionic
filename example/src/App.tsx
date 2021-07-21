@@ -4,7 +4,7 @@ import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonContent} from "@ionic/r
 import Ajv from "ajv"
 import addFormats from "ajv-formats"
 import {JSONSchemaBridge} from "uniforms-bridge-json-schema"
-import {AutoFields, AutoForm, SubmitField} from "uniforms-ionic"
+import {AutoFields, AutoForm, LongTextField, SubmitField} from "uniforms-ionic"
 import "uniforms-ionic/uniforms-ionic.css"
 
 const schema = {
@@ -15,12 +15,17 @@ const schema = {
             title: "Address",
             type: "object",
             properties: {
-                city: {type: "string"},
+                city: {type: "string", readOnly: true, default: "Test"},
                 state: {type: "string"},
                 street: {type: "string"},
-                zip: {type: "string", pattern: "[0-9]{5}"}
+                zip: {type: "string", pattern: "[0-9]{5}"},
+                x: {
+                    type: "boolean",
+                    default: true,
+                    readOnly: true
+                }
             },
-            required: ["street", "zip", "state"]
+            required: ["street", "zip", "state", "x"]
         },
         interval: {
             "title": "Zeitraum",
@@ -30,8 +35,14 @@ const schema = {
             "default": "2021-01-15T00:00:00/2021-02-03T00:00:00",
             "const": "2021-01-15T00:00:00/2021-02-03T00:00:00"
         },
+        text: {
+            type: "string",
+            default: "Test!!\nLala",
+            readOnly: true
+        },
         participants: {
             type: "array",
+            readOnly: true,
             items: {
                 type: "object",
                 properties: {
@@ -83,6 +94,7 @@ function App() {
                     </IonCardHeader>
                     <AutoForm schema={bridge} showInlineError={true} onChangeModel={(data: any) => log(data)}>
                         <AutoFields/>
+                        <LongTextField name={"text"}/>
                         <SubmitField/>
                     </AutoForm>
                 </IonCard>

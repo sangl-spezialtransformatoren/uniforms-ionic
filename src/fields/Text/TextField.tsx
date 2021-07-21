@@ -30,7 +30,8 @@ function Text({
         <Container
             error={error}
             showInlineError={showInlineError}
-            errorMessage={errorMessage} {...filterDOMProps(props)}>
+            errorMessage={errorMessage}
+            readOnly={readOnly} {...filterDOMProps(props)}>
             <Label showInlineError={showInlineError} error={error} errorMessage={errorMessage}>{label}</Label>
             <IonInput
                 autocomplete={autoComplete as AutocompleteTypes}

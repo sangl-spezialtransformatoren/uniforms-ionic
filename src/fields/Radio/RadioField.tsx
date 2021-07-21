@@ -46,7 +46,8 @@ function Radio({
                     <Label
                         error={error}
                         errorMessage={errorMessage}
-                        showInlineError={showInlineError}>
+                        showInlineError={showInlineError}
+                        readOnly={readOnly}>
                         {label}
                     </Label>
                 </IonListHeader>

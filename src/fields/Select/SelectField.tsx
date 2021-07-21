@@ -68,18 +68,19 @@ function Select(
         </>
     } else {
         return <>
-            <Container>
-                <Label>{label}</Label>
+            <Container readOnly={readOnly}>
+                <Label readOnly={readOnly}>{label}</Label>
                 <IonSelect
                     interface={"popover"}
                     onIonChange={(e) => {
                         onChange(e.detail.value || undefined)
                     }}
-                    disabled={disabled}
+                    disabled={disabled || readOnly}
                     id={id}
                     multiple={multiple}
                     name={name}
                     ref={inputRef}
+                    style={{opacity: readOnly && !disabled && 1}}
                     value={value ?? null}>
 
                     {value !== undefined && !required && !multiple &&

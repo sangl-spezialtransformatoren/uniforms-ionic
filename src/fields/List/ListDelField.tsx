@@ -37,7 +37,7 @@ export function createListDelField(AutoField: AutoField) {
         }
 
         return (
-            <IonButtons style={{position: "absolute", left: 4, marginTop: 11}}>
+            <IonButtons style={{position: "absolute", left: 4, marginTop: 11, visibility: readOnly || disabled && "hidden"}}>
                 <IonButton onClick={onAction} onKeyDown={onAction} tabIndex={0} className={"list-buttons"}>
                     <IonIcon icon={removeCircleOutline}/>
                 </IonButton>

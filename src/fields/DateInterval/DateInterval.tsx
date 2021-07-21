@@ -77,6 +77,7 @@ function DateInterval_(
                     onClick={() => setModalOpen(true)}
                     disabled={disabled || readOnly}
                     className={"date-input-button"}
+                    style={{opacity: readOnly && !disabled && 1}}
                 >
                     {value ? value.toFormat("EEE d.L.", {separator: " – "}) : placeholder ? placeholder : "Select interval"}
                 </IonButton>

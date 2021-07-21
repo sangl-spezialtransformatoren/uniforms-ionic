@@ -32,11 +32,13 @@ function Num({
             error={error}
             errorMessage={errorMessage}
             showInlineError={showInlineError}
+            readOnly={readOnly}
             {...filterDOMProps(props)}>
             <Label
                 error={error}
                 errorMessage={errorMessage}
-                showInlineError={showInlineError}>
+                showInlineError={showInlineError}
+            readOnly={readOnly}>
                 {label}
             </Label>
             <IonInput

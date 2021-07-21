@@ -49,10 +49,11 @@ export const DateInput = React.forwardRef<DateInputHandle, CommonProps & DateInp
                         dayPickerRef.current?.open(e.nativeEvent)
                     }}
                     disabled={disabled || readOnly}
+                    style={{opacity: readOnly && !disabled && 1}}
                     className={"date-input-button"}
                 >
                     {displayIcons && <IonIcon icon={calendarOutline} size={"small"} slot={"start"}/>}
-                    {internalValue ? internalValue?.toLocaleDateString() : placeholder ? placeholder : "Choose Date"}
+                    {internalValue ? internalValue?.toLocaleDateString() : readOnly ? "–" : placeholder ? placeholder : "Choose Date"}
                 </IonButton>
             </IonButtons>
             <DayPickerPopover

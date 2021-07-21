@@ -37,7 +37,7 @@ export function createListAddField(AutoField: AutoField) {
         }
 
         return (
-            <IonButtons>
+            <IonButtons style={{visibility: (readOnly || disabled) && "hidden"}}>
                 <IonButton onClick={onAction} onKeyDown={onAction} tabIndex={0} className={"list-buttons"}>
                     <IonIcon icon={addCircleOutline}/>
                 </IonButton>

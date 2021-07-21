@@ -18,7 +18,7 @@ export function createNestField(AutoField: AutoField) {
                   }: NestFieldProps) {
         return (
             <>
-                {label && <IonListHeader>
+                {label && <IonListHeader style={{fontWeight: 600}}>
                     {label}
                 </IonListHeader>
                 }

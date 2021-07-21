@@ -1,14 +1,15 @@
-import React, {MouseEvent as ReactMouseEvent, useCallback, useState} from "react"
+import React, {MouseEvent as ReactMouseEvent, useCallback, useMemo, useState} from "react"
 import {IonLabel, IonPopover} from "@ionic/react"
 
 type LabelProps = {
     error?: any
     errorMessage?: string
     showInlineError?: boolean,
-    position?: any
+    position?: any,
+    readOnly?: boolean
 }
 
-export const Label: React.FC<LabelProps> = ({children, error, errorMessage, showInlineError, position}) => {
+export const Label: React.FC<LabelProps> = ({children, error, errorMessage, showInlineError, position, readOnly}) => {
     let [errorPopoverOpen, setErrorPopoverOpen] = useState(false)
     let [errorPopoverEvent, setErrorPopoverEvent] = useState<MouseEvent>()
 
@@ -19,6 +20,13 @@ export const Label: React.FC<LabelProps> = ({children, error, errorMessage, show
         }
     }, [error, showInlineError])
 
+    let style = useMemo(() => {
+        let style: any = {}
+        if (readOnly) {
+            style["color"] = "initial"
+        }
+        return style
+    }, [readOnly])
 
     if (children) {
         return <>
@@ -26,6 +34,7 @@ export const Label: React.FC<LabelProps> = ({children, error, errorMessage, show
                 onClick={onLabelClick}
                 className={showInlineError && error ? "item-has-error" : ""}
                 position={position}
+                style={style}
             >
                 {children}
             </IonLabel>

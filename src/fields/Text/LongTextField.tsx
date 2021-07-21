@@ -28,12 +28,14 @@ function LongText({
             error={error}
             errorMessage={errorMessage}
             showInlineError={showInlineError}
+            readOnly={readOnly}
             {...filterDOMProps(props)}>
             <Label
                 position={"stacked"}
                 error={error}
                 errorMessage={errorMessage}
-                showInlineError={showInlineError}>
+                showInlineError={showInlineError}
+                readOnly={readOnly}>
                 {label}
             </Label>
             <IonTextarea

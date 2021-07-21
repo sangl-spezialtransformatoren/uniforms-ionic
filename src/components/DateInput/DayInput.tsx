@@ -48,7 +48,7 @@ export const DateInput = React.forwardRef<DateInputHandle, CommonProps & DateInp
                     onClick={(e) => {
                         dayPickerRef.current?.open(e.nativeEvent)
                     }}
-                    disabled={disabled}
+                    disabled={disabled || readOnly}
                     className={"date-input-button"}
                 >
                     {displayIcons && <IonIcon icon={calendarOutline} size={"small"} slot={"start"}/>}

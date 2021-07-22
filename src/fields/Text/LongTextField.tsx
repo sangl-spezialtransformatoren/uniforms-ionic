@@ -40,7 +40,7 @@ function LongText({
                 {label}
             </Label>
             <IonTextarea
-                autoGrow={autogrow && !!(value?.length && value.split("\n").length > 1) && !readOnly && !disabled}
+                autoGrow={autogrow && typeof value === "string" && (value.split("\n").length > 1) && !readOnly && !disabled}
                 disabled={disabled}
                 id={id}
                 name={name}

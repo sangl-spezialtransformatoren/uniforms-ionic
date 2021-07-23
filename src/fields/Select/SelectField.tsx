@@ -1,23 +1,25 @@
 import xor from "lodash/xor"
 import React, {Ref} from "react"
-import {connectField, HTMLFieldProps} from "uniforms"
-import {IonCheckbox, IonItem, IonListHeader, IonSelect, IonSelectOption} from "@ionic/react"
+import {connectField} from "uniforms"
+import {IonCheckbox, IonItem, IonListHeader, IonNote, IonSelect, IonSelectOption} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
+import {IonicFieldProps} from "../../index"
 
 const base64: typeof btoa =
     typeof btoa !== "undefined" ? btoa : x => Buffer.from(x).toString("base64")
 const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, "")
 
-export type SelectFieldProps = HTMLFieldProps<string | string[],
-    typeof Container,
-    {
-        allowedValues?: string[];
-        checkboxes?: boolean;
-        disableItem?: (value: string) => boolean;
-        inputRef?: Ref<HTMLIonSelectElement>;
-        transform?: (value: string) => string;
-    }>;
+type CustomProps = {
+    allowedValues?: string[];
+    checkboxes?: boolean;
+    disableItem?: (value: string) => boolean;
+    inputRef?: Ref<HTMLIonSelectElement>;
+    transform?: (value: string) => string;
+    required?: boolean
+}
+
+export type SelectFieldProps = IonicFieldProps<string | string[], {}, CustomProps>
 
 function Select(
     {
@@ -36,7 +38,10 @@ function Select(
         disableItem,
         transform,
         value,
-        ...props
+        description,
+        error,
+        errorMessage,
+        showInlineError
     }: SelectFieldProps) {
     const multiple = fieldType === Array
 
@@ -44,6 +49,7 @@ function Select(
         return <>
             <IonListHeader>
                 <Label>{label}</Label>
+                {description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
             </IonListHeader>
             <div style={{paddingLeft: 12}}>
                 {allowedValues!.map(item => (
@@ -68,8 +74,19 @@ function Select(
         </>
     } else {
         return <>
-            <Container readOnly={readOnly}>
-                <Label readOnly={readOnly}>{label}</Label>
+            <Container
+                readOnly={readOnly}
+                error={error}
+                errorMessage={errorMessage}
+                showInlineError={showInlineError}>
+                <Label
+                    readOnly={readOnly}
+                    error={error}
+                    errorMessage={errorMessage}
+                    showInlineError={showInlineError}
+                    description={description}>
+                    {label}
+                </Label>
                 <IonSelect
                     interface={"popover"}
                     onIonChange={(e) => {

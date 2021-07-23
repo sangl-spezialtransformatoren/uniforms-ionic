@@ -5,9 +5,7 @@ import {IonButton, IonButtons, IonIcon} from "@ionic/react"
 import {addCircleOutline} from "ionicons/icons"
 import {AutoField} from "../Auto/AutoField"
 
-export type ListAddFieldProps = HTMLFieldProps<unknown,
-    HTMLIonButtonsElement,
-    {initialCount?: number}>;
+export type ListAddFieldProps = HTMLFieldProps<unknown, HTMLIonButtonsElement, {initialCount?: number}>
 
 export function createListAddField(AutoField: AutoField) {
     function ListAdd({

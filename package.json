@@ -21,7 +21,8 @@
     "start": "npm run start:tsc & npm run start:sass",
     "start:tsc": "tsc --watch",
     "start:sass": "sass --watch src/style/uniforms-ionic.scss lib/uniforms-ionic.css",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@types/invariant": "^2.2.34",
@@ -29,6 +30,7 @@
     "@types/node": "^15.0.2",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
+    "patch-package": "^6.4.7",
     "sass": "^1.32.12",
     "typescript": "^4.2.4"
   }

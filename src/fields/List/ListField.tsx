@@ -1,16 +1,15 @@
 import React, {Children, cloneElement, isValidElement} from "react"
-import {connectField, HTMLFieldProps} from "uniforms"
+import {connectField} from "uniforms"
 
-import {IonListHeader} from "@ionic/react"
+import {IonListHeader, IonNote} from "@ionic/react"
 import {createListItemField, ListItemField} from "./ListItemField"
 import {createListAddField} from "./ListAddField"
 import {AutoField} from "../Auto/AutoField"
 import {Label} from "../../components/Label/Label"
+import {IonicFieldProps} from "../../index"
 
-
-export type ListFieldProps = HTMLFieldProps<unknown[],
-    HTMLUListElement,
-    {initialCount?: number; itemProps?: object}>;
+type CustomProps = {initialCount?: number; itemProps?: object, children?: React.DOMAttributes<any>["children"]}
+export type ListFieldProps = IonicFieldProps<unknown[], {}, CustomProps>;
 
 export function createListField(AutoField: AutoField) {
     let ListAddField = createListAddField(AutoField)
@@ -27,13 +26,16 @@ export function createListField(AutoField: AutoField) {
                       errorMessage,
                       showInlineError,
                       readOnly,
-                      ...props
+                      description
                   }: ListFieldProps) {
         return (
             <>
                 <IonListHeader style={{paddingRight: 4}}>
                     <Label error={error} errorMessage={errorMessage} showInlineError={showInlineError}>
-                        {label}
+                        <b>{label}</b>{!!description && <>
+                        &ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote>
+                    </>
+                    }
                     </Label>
                     <ListAddField initialCount={initialCount} readOnly={readOnly} name="$"/>
                 </IonListHeader>

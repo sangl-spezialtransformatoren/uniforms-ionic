@@ -1,12 +1,12 @@
 import React, {Ref} from "react"
-import {connectField, filterDOMProps, HTMLFieldProps} from "uniforms"
+import {connectField} from "uniforms"
 import {IonInput} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
+import {IonicFieldProps} from "../../index"
 
-export type NumFieldProps = HTMLFieldProps<number,
-    HTMLDivElement,
-    {decimal?: boolean; inputRef?: Ref<HTMLIonInputElement>}>;
+type CustomProps = {decimal?: boolean; inputRef?: Ref<HTMLIonInputElement>, max: number, min: number, step: number}
+export type NumFieldProps = IonicFieldProps<number, {}, CustomProps>;
 
 function Num({
                  decimal,
@@ -25,20 +25,20 @@ function Num({
                  error,
                  errorMessage,
                  showInlineError,
-                 ...props
+                 description
              }: NumFieldProps) {
     return (
         <Container
             error={error}
             errorMessage={errorMessage}
             showInlineError={showInlineError}
-            readOnly={readOnly}
-            {...filterDOMProps(props)}>
+            readOnly={readOnly}>
             <Label
                 error={error}
                 errorMessage={errorMessage}
                 showInlineError={showInlineError}
-            readOnly={readOnly}>
+                readOnly={readOnly}
+                description={description}>
                 {label}
             </Label>
             <IonInput

@@ -1,5 +1,5 @@
 import React from "react"
-import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonContent} from "@ionic/react"
+import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonContent, IonNote} from "@ionic/react"
 
 import Ajv from "ajv"
 import addFormats from "ajv-formats"
@@ -9,20 +9,24 @@ import "uniforms-ionic/uniforms-ionic.css"
 
 const schema = {
     title: "My awesome form",
+    description: "With awesome descriptions",
     type: "object",
     properties: {
         address: {
             title: "Address",
             type: "object",
+            description: "Test",
             properties: {
-                city: {type: "string", readOnly: true, default: "Test"},
-                state: {type: "string"},
-                street: {type: "string"},
+                city: {type: "string", readOnly: true, default: "Test", description: "Where you live"},
+                state: {type: "string", description: "Where you work"},
+                street: {type: "string", description: "Where your gf lives"},
                 zip: {type: "string", pattern: "[0-9]{5}"},
                 x: {
                     type: "boolean",
                     default: true,
-                    readOnly: true
+                    readOnly: true,
+                    "title": "titel",
+                    "description": "Beschreibung"
                 }
             },
             required: ["street", "zip", "state", "x"]
@@ -33,12 +37,23 @@ const schema = {
             "readOnly": true,
             "format": "date-time-interval",
             "default": "2021-01-15T00:00:00/2021-02-03T00:00:00",
-            "const": "2021-01-15T00:00:00/2021-02-03T00:00:00"
+            "const": "2021-01-15T00:00:00/2021-02-03T00:00:00",
+            description: "TEgbh"
+        },
+        "list": {
+            "type": "array",
+            title: "Liste",
+            "description": "Text",
+            items: {
+                "title": "Titel",
+                type: "string"
+            }
         },
         text: {
             type: "string",
             default: "Test!!\nLala",
-            readOnly: true
+            readOnly: true,
+            "description": "Beschreibung"
         },
         participants: {
             type: "array",
@@ -90,11 +105,13 @@ function App() {
                     <IonCardHeader>
                         <IonCardTitle>
                             {bridge.schema?.title}
+                            {bridge.schema?.description && <><br/><IonNote>{bridge.schema?.description}</IonNote></>}
                         </IonCardTitle>
                     </IonCardHeader>
                     <AutoForm schema={bridge} showInlineError={true} onChangeModel={(data: any) => log(data)}>
                         <AutoFields/>
-                        <LongTextField name={"text"}/>
+                        { /* @ts-ignore*/}
+                        <LongTextField name={"text"} description={"Beschreibung"}/>
                         <SubmitField/>
                     </AutoForm>
                 </IonCard>

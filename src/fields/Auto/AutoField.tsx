@@ -15,7 +15,7 @@ import {
 
 export type AutoFieldProps = Parameters<typeof AutoField>[0];
 export type AutoField = ReturnType<typeof createAutoField>
-let log = console.log
+
 export const AutoField = createAutoField(props => {
     if (props.allowedValues) {
         return props.checkboxes && props.fieldType !== Array

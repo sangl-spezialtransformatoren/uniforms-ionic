@@ -1,10 +1,13 @@
 import React, {Ref} from "react"
-import {connectField, FieldProps} from "uniforms"
+import {connectField} from "uniforms"
 import {IonCheckbox} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
+import {IonicFieldProps} from "../../index"
 
-export type BoolFieldProps = FieldProps<boolean, typeof Container, {inputRef?: Ref<HTMLIonCheckboxElement>}>;
+type CustomProps = {inputRef?: Ref<HTMLIonCheckboxElement>}
+export type BoolFieldProps = IonicFieldProps<boolean, {}, CustomProps>;
+
 const Bool: React.FC<BoolFieldProps> = (
     {
         disabled,
@@ -17,7 +20,8 @@ const Bool: React.FC<BoolFieldProps> = (
         value,
         error,
         errorMessage,
-        showInlineError
+        showInlineError,
+        description
     }) => {
     return <>
         <Container
@@ -29,7 +33,8 @@ const Bool: React.FC<BoolFieldProps> = (
                 error={error}
                 errorMessage={errorMessage}
                 showInlineError={showInlineError}
-                readOnly={readOnly}>
+                readOnly={readOnly}
+                description={description}>
                 {label}
             </Label>
             <IonCheckbox

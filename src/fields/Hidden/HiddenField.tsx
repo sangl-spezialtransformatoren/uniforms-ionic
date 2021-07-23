@@ -7,7 +7,7 @@ export type HiddenFieldProps = Override<HTMLProps<HTMLInputElement>,
         name: string;
         noDOM?: boolean;
         value?: any;
-    }>;
+    }>
 
 export const HiddenField: React.FC<HiddenFieldProps> = ({value, ...rawProps}) => {
     const props = useField(rawProps.name, rawProps, {initialValue: false})[0]

@@ -1,12 +1,12 @@
 import React, {Ref, useState} from "react"
-import {connectField, filterDOMProps, HTMLFieldProps} from "uniforms"
-import {IonTextarea} from "@ionic/react"
+import {connectField} from "uniforms"
+import {IonNote, IonTextarea} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
+import {IonicFieldProps} from "../../index"
 
-export type LongTextFieldProps = HTMLFieldProps<string,
-    typeof Container,
-    {inputRef?: Ref<HTMLIonTextareaElement>}>;
+type CustomProps = {inputRef?: Ref<HTMLIonTextareaElement>}
+export type LongTextFieldProps = IonicFieldProps<string, {}, CustomProps>;
 
 function LongText({
                       disabled,
@@ -21,6 +21,7 @@ function LongText({
                       error,
                       errorMessage,
                       showInlineError,
+                      description,
                       ...props
                   }: LongTextFieldProps) {
     let [autogrow, setAutogrow] = useState(false)
@@ -29,15 +30,14 @@ function LongText({
             error={error}
             errorMessage={errorMessage}
             showInlineError={showInlineError}
-            readOnly={readOnly}
-            {...filterDOMProps(props)}>
+            readOnly={readOnly}>
             <Label
                 position={"stacked"}
                 error={error}
                 errorMessage={errorMessage}
                 showInlineError={showInlineError}
                 readOnly={readOnly}>
-                {label}
+                {label}{description && <><IonNote style={{fontSize: "0.9em"}}>&ensp;{description}</IonNote></>}
             </Label>
             <IonTextarea
                 autoGrow={autogrow && typeof value === "string" && (value.split("\n").length > 1) && !readOnly && !disabled}

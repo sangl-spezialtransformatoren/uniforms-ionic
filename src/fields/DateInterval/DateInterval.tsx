@@ -1,18 +1,17 @@
 import React, {Ref, useCallback, useMemo, useState} from "react"
-import {connectField, filterDOMProps, HTMLFieldProps} from "uniforms"
+import {connectField} from "uniforms"
 import {DateInputHandle} from "../../components/DateInput/DayInput"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
 import {IonButton, IonButtons, IonModal} from "@ionic/react"
 import {Interval, Settings} from "luxon"
 import DayPicker from "react-day-picker"
+import {IonicFieldProps} from "../../index"
 
 Settings.defaultLocale = "de"
 
-export type DateIntervalFieldProps = HTMLFieldProps<string,
-    typeof Container,
-    {inputRef?: Ref<DateInputHandle>; max?: Date; min?: Date}>;
-let log = console.log
+type CustomProps = {inputRef?: Ref<DateInputHandle>; max?: Date; min?: Date}
+export type DateIntervalFieldProps = IonicFieldProps<string, {}, CustomProps>
 
 function DateInterval_(
     {
@@ -30,7 +29,7 @@ function DateInterval_(
         error,
         errorMessage,
         showInlineError,
-        ...props
+        description
     }: DateIntervalFieldProps) {
 
     let value = useMemo(() => {
@@ -69,9 +68,14 @@ function DateInterval_(
         <Container
             error={error}
             errorMessage={errorMessage}
-            showInlineError={showInlineError}
-            {...filterDOMProps(props)}>
-            <Label error={error} errorMessage={errorMessage} showInlineError={showInlineError}> {label}</Label>
+            showInlineError={showInlineError}>
+            <Label
+                error={error}
+                errorMessage={errorMessage}
+                showInlineError={showInlineError}
+                description={description}>
+                {label}
+            </Label>
             <IonButtons slot={"end"}>
                 <IonButton
                     onClick={() => setModalOpen(true)}

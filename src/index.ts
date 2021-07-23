@@ -1,3 +1,5 @@
+import {GuaranteedProps, Override} from "uniforms/src/types"
+
 export * from "./fields"
 export * from "./forms"
 
@@ -9,3 +11,6 @@ export {createListField} from "./fields/List/ListField"
 export {createListAddField} from "./fields/List/ListAddField"
 export {createListDelField} from "./fields/List/ListDelField"
 export {createListItemField} from "./fields/List/ListItemField"
+
+export type IonicExtensionProps = {description?: string}
+export type IonicFieldProps<Value, Base, Extension = object> = Override<Base, GuaranteedProps<Value> & IonicExtensionProps & Extension>

@@ -1,8 +1,8 @@
 import React from "react"
-import {connectField, HTMLFieldProps} from "uniforms"
-import {IonItem, IonListHeader, IonRadio, IonRadioGroup} from "@ionic/react"
+import {connectField} from "uniforms"
+import {IonItem, IonListHeader, IonNote, IonRadio, IonRadioGroup} from "@ionic/react"
 import {Label} from "../../components/Label/Label"
-import {Container} from "../../components/Container/Container"
+import {IonicFieldProps} from "../../index"
 
 const base64 =
     typeof btoa !== "undefined"
@@ -10,13 +10,13 @@ const base64 =
         : (x: string) => Buffer.from(x).toString("base64")
 const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, "")
 
-export type RadioFieldProps = HTMLFieldProps<string,
-    typeof Container,
-    {
-        allowedValues?: string[];
-        checkboxes?: boolean;
-        transform?: (value: string) => string;
-    }>;
+type CustomProps = {
+    allowedValues?: string[];
+    checkboxes?: boolean;
+    transform?: (value: string) => string;
+}
+
+export type RadioFieldProps = IonicFieldProps<string, {}, CustomProps>
 
 function Radio({
                    allowedValues,
@@ -31,7 +31,7 @@ function Radio({
                    error,
                    errorMessage,
                    showInlineError,
-                   ...props
+                   description
                }: RadioFieldProps) {
     return (
         <>
@@ -48,7 +48,8 @@ function Radio({
                         errorMessage={errorMessage}
                         showInlineError={showInlineError}
                         readOnly={readOnly}>
-                        {label}
+                        <b>{label}</b>
+                        {description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
                     </Label>
                 </IonListHeader>
 

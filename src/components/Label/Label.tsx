@@ -1,5 +1,5 @@
 import React, {MouseEvent as ReactMouseEvent, useCallback, useMemo, useState} from "react"
-import {IonLabel, IonPopover} from "@ionic/react"
+import {IonLabel, IonNote, IonPopover} from "@ionic/react"
 
 type LabelProps = {
     error?: any
@@ -7,9 +7,13 @@ type LabelProps = {
     showInlineError?: boolean,
     position?: any,
     readOnly?: boolean
+    description?: string
 }
 
-export const Label: React.FC<LabelProps> = ({children, error, errorMessage, showInlineError, position, readOnly}) => {
+export const Label: React.FC<LabelProps> = (
+    {
+        children, error, errorMessage, showInlineError, position, readOnly, description
+    }) => {
     let [errorPopoverOpen, setErrorPopoverOpen] = useState(false)
     let [errorPopoverEvent, setErrorPopoverEvent] = useState<MouseEvent>()
 
@@ -38,6 +42,7 @@ export const Label: React.FC<LabelProps> = ({children, error, errorMessage, show
                 style={style}
             >
                 {children}
+                {!!description && <><br/><IonNote>{description}</IonNote></>}
             </IonLabel>
             {showInlineError &&
             <IonPopover

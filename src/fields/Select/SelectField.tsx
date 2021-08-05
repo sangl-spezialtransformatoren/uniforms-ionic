@@ -32,7 +32,6 @@ function Select(
         label,
         name,
         onChange,
-        placeholder,
         readOnly,
         required,
         disableItem,
@@ -97,7 +96,7 @@ function Select(
                     multiple={multiple}
                     name={name}
                     ref={inputRef}
-                    style={{opacity: readOnly && !disabled && 1}}
+                    style={{opacity: readOnly && !disabled && 1, overflow: "hidden"}}
                     value={value ?? null}>
 
                     {value !== undefined && !required && !multiple &&

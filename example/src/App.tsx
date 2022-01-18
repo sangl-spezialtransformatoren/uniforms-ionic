@@ -16,6 +16,7 @@ const schema = {
             title: "Address",
             type: "object",
             description: "Test",
+            collapsible: true,
             properties: {
                 city: {type: "string", readOnly: true, default: "Test", description: "Where you live"},
                 state: {type: "string", description: "Where you work"},
@@ -76,6 +77,7 @@ const schema = {
 
 const ajv = new Ajv({allErrors: true, useDefaults: true})
 addFormats(ajv)
+ajv.addKeyword("collapsible")
 ajv.addFormat(
     "date-time-interval",
     {

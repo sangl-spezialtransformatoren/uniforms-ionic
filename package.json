@@ -13,7 +13,7 @@
   },
   "peerDependencies": {
     "@ionic/react": "^6.0.0",
-    "ionicons": "^5.5.1",
+    "ionicons": "^6.0.0",
     "react": "^16.0.0 || ^17.0.2",
     "react-dom": "^16.0.0 || ^17.0.2",
     "uniforms": "^3.7"
@@ -43,6 +43,7 @@
     "ajv-formats": "^2.1.1",
     "ajv-keywords": "^5.1.0",
     "babel-loader": "^8.2.3",
+    "ionicons": "^6.0.0",
     "patch-package": "^6.4.7",
     "postcss": "^8.4.5",
     "react": "^17.0.2",

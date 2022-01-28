@@ -1,8 +1,8 @@
 diff --git a/node_modules/uniforms/src/types.ts b/node_modules/uniforms/src/types.ts
-index 1cf6091..0b31020 100644
+index e209f8c..0fbcfc9 100644
 --- a/node_modules/uniforms/src/types.ts
 +++ b/node_modules/uniforms/src/types.ts
-@@ -79,7 +79,7 @@ export type ValidateMode = 'onChange' | 'onChangeAfterSubmit' | 'onSubmit';
+@@ -81,7 +81,7 @@ export type ValidateMode = 'onChange' | 'onChangeAfterSubmit' | 'onSubmit';
  
  // Explicit declaration to allow users extend it directly.
  // Would it be possible not to use `declare` here?

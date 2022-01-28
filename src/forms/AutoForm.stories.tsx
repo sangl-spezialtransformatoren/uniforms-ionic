@@ -1,11 +1,32 @@
 import React from "react"
-import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonContent, IonNote} from "@ionic/react"
-
+import {Meta} from "@storybook/react/types-6-0"
+import {AutoForm} from "./AutoForm"
+import {JSONSchemaBridge} from "uniforms-bridge-json-schema"
 import Ajv from "ajv"
 import addFormats from "ajv-formats"
-import {JSONSchemaBridge} from "uniforms-bridge-json-schema"
-import {AutoFields, AutoForm, LongTextField, SubmitField} from "uniforms-ionic"
-import "uniforms-ionic/uniforms-ionic.css"
+import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonNote} from "@ionic/react"
+
+/* Core CSS required for Ionic components to work properly */
+import "@ionic/react/css/core.css"
+
+/* Basic CSS for apps built with Ionic */
+import "@ionic/react/css/normalize.css"
+import "@ionic/react/css/structure.css"
+import "@ionic/react/css/typography.css"
+
+/* React day picker styles */
+import "react-day-picker/lib/style.css"
+
+/* Uniforms ionic styles */
+import "../style/uniforms-ionic.css"
+import "../style/colors.css"
+
+import {AutoFields, SubmitField} from "../fields"
+
+export default {
+    title: "Test",
+    component: AutoForm
+} as Meta
 
 const schema = {
     title: "My awesome form",
@@ -35,7 +56,6 @@ const schema = {
         interval: {
             "title": "Zeitraum",
             "type": "string",
-            "readOnly": true,
             "format": "date-time-interval",
             "default": "2021-01-15T00:00:00/2021-02-03T00:00:00",
             "const": "2021-01-15T00:00:00/2021-02-03T00:00:00",
@@ -96,30 +116,27 @@ function createValidator(schema: object) {
 }
 
 const schemaValidator = createValidator(schema)
-let log = console.log
-export const bridge = new JSONSchemaBridge(schema, schemaValidator)
+const bridge = new JSONSchemaBridge(schema, schemaValidator)
 
-function App() {
+export const Test = () => {
     return <IonApp>
-        <IonContent fullscreen>
-            <div className="main">
-                <IonCard className={"formCard"}>
-                    <IonCardHeader>
-                        <IonCardTitle>
-                            {bridge.schema?.title}
-                            {bridge.schema?.description && <><br/><IonNote>{bridge.schema?.description}</IonNote></>}
-                        </IonCardTitle>
-                    </IonCardHeader>
-                    <AutoForm schema={bridge} showInlineError={true} onChangeModel={(data: any) => log(data)}>
-                        <AutoFields/>
-                        { /* @ts-ignore*/}
-                        <LongTextField name={"text"} description={"Beschreibung"}/>
-                        <SubmitField/>
-                    </AutoForm>
-                </IonCard>
-            </div>
-        </IonContent>
+        <div className="main">
+            <IonCard className={"formCard"}>
+                <IonCardHeader>
+                    <IonCardTitle>
+                        {bridge.schema?.title}
+                        {bridge.schema?.description && <><br/><IonNote>{bridge.schema?.description}</IonNote></>}
+                    </IonCardTitle>
+                </IonCardHeader>
+                <AutoForm
+                    schema={bridge}
+                    showInlineError={true}
+                    onChangeModel={(data: any) => console.log(data)}>
+                    <AutoFields/>
+                    <SubmitField/>
+                </AutoForm>
+            </IonCard>
+        </div>
     </IonApp>
 }
 
-export default App

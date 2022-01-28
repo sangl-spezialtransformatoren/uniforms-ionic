@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "uniforms-ionic/uniforms-ionic.css": ["../lib/uniforms-ionic.css"],
-      "uniforms-ionic": ["../lib"]
-    }
-  }
-}

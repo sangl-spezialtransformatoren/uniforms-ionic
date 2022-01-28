@@ -1,7 +1,6 @@
 {
-  "name": "uniforms-ionic",
+  "name": "@sangl/uniforms-ionic",
   "version": "0.2.0",
-  "private": true,
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",

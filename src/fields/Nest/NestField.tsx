@@ -17,14 +17,15 @@ export function createNestField(AutoField: AutoField) {
             itemProps,
             label,
             description,
-            collapsible
+            collapsible,
+            error,
+            showInlineError
         }: NestFieldProps) {
-
         let [open, setOpen] = useState(!collapsible)
 
         return (
             <>
-                {label && <IonListHeader>
+                {label && <IonListHeader style={{color:(showInlineError && error) ? "var(--ion-color-danger)" : "initial"}}>
                     <b>{label}</b>
                     {!!description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
                     {collapsible &&

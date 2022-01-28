@@ -7,7 +7,7 @@ import {Container} from "../../components/Container/Container"
 import {IonicFieldProps} from "../../index"
 
 const base64: typeof btoa =
-    typeof btoa !== "undefined" ? btoa : x => Buffer.from(x).toString("base64")
+    typeof btoa !== "undefined" ? btoa : (x: any) => Buffer.from(x).toString("base64")
 const escape = (x: string) => base64(encodeURIComponent(x)).replace(/=+$/, "")
 
 type CustomProps = {

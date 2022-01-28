@@ -54,7 +54,7 @@ export const DayPickerPopover = React.forwardRef<DayPickerHandle, DayPickerPopov
             <IonModal
                 isOpen={dayPickerOpen}
                 onDidDismiss={() => setDayPickerOpen(false)}
-                cssClass={"day-input-modal"}>
+                className={"day-input-modal"}>
                 <DayPicker
                     showWeekNumbers
                     selectedDays={[internalValue]}

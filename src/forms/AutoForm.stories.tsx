@@ -5,23 +5,9 @@ import {JSONSchemaBridge} from "uniforms-bridge-json-schema"
 import Ajv from "ajv"
 import addFormats from "ajv-formats"
 import {IonApp, IonCard, IonCardHeader, IonCardTitle, IonNote} from "@ionic/react"
-
-/* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css"
-
-/* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css"
-import "@ionic/react/css/structure.css"
-import "@ionic/react/css/typography.css"
-
-/* React day picker styles */
-import "react-day-picker/lib/style.css"
-
-/* Uniforms ionic styles */
-import "../style/uniforms-ionic.css"
-import "../style/colors.css"
-
 import {AutoFields, SubmitField} from "../fields"
+
+import "../style/uniforms-ionic.css"
 
 export default {
     title: "Test",
@@ -56,6 +42,7 @@ const schema = {
         interval: {
             "title": "Zeitraum",
             "type": "string",
+            "readOnly": true,
             "format": "date-time-interval",
             "default": "2021-01-15T00:00:00/2021-02-03T00:00:00",
             "const": "2021-01-15T00:00:00/2021-02-03T00:00:00",

@@ -87,7 +87,7 @@ function DateInterval_(
                 </IonButton>
             </IonButtons>
         </Container>
-        <IonModal isOpen={modalOpen} onDidDismiss={onDidDismiss} cssClass={"day-interval-modal"}>
+        <IonModal isOpen={modalOpen} onDidDismiss={onDidDismiss} className={"day-interval-modal"}>
             <DayPicker
                 className="Selectable"
                 showWeekNumbers

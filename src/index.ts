@@ -1,5 +1,7 @@
 import {GuaranteedProps, Override} from "uniforms/src/types"
 
+import "./style/uniforms-ionic.scss"
+
 export * from "./fields"
 export * from "./forms"
 

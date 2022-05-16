@@ -4,6 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import path from "path";
+import postcssImport from 'postcss-import';
 
 const packageJson = require("./package.json");
 
@@ -27,7 +28,8 @@ export default {
         commonjs(),
         typescript({useTsconfigDeclarationDir: true}),
         postcss({
-            extract: path.resolve("lib/style.css")
+            extract: path.resolve("lib/style.css"),
+            plugins: [postcssImport()]
         })
     ]
 };

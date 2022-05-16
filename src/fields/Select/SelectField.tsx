@@ -21,8 +21,8 @@ type CustomProps = {
 
 export type SelectFieldProps = IonicFieldProps<string | string[], {}, CustomProps>
 
-function Select(
-    {
+function Select(props: SelectFieldProps) {
+    let {
         allowedValues,
         checkboxes,
         disabled,
@@ -41,19 +41,19 @@ function Select(
         error,
         errorMessage,
         showInlineError
-    }: SelectFieldProps) {
+    } = props
     const multiple = fieldType === Array
 
     if (checkboxes) {
         return <>
             <IonListHeader>
-                <Label>{label}</Label>
+                <Label {...props}/>
                 {description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
             </IonListHeader>
             <div style={{paddingLeft: 12}}>
                 {allowedValues!.map(item => (
                     <IonItem key={item}>
-                        <Label>{transform ? transform(item) : item}</Label>
+                        <Label {...props} label={transform ? transform(item) : item}/>
                         <IonCheckbox
                             checked={
                                 fieldType === Array ? value!.includes(item) : value === item
@@ -73,19 +73,8 @@ function Select(
         </>
     } else {
         return <>
-            <Container
-                readOnly={readOnly}
-                error={error}
-                errorMessage={errorMessage}
-                showInlineError={showInlineError}>
-                <Label
-                    readOnly={readOnly}
-                    error={error}
-                    errorMessage={errorMessage}
-                    showInlineError={showInlineError}
-                    description={description}>
-                    {label}
-                </Label>
+            <Container {...props}>
+                <Label{...props}/>
                 <IonSelect
                     interface={"popover"}
                     onIonChange={(e) => {
@@ -100,9 +89,9 @@ function Select(
                     value={value ?? null}>
 
                     {value !== undefined && !required && !multiple &&
-                    <IonSelectOption value={null} disabled={required} hidden={required}>
-                        {"Remove selection"}
-                    </IonSelectOption>
+                        <IonSelectOption value={null} disabled={required} hidden={required}>
+                            {"Remove selection"}
+                        </IonSelectOption>
                     }
 
                     {allowedValues?.map(value => (

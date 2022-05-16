@@ -8,37 +8,28 @@ import {IonicFieldProps} from "../../index"
 type CustomProps = {inputRef?: Ref<HTMLIonTextareaElement>}
 export type LongTextFieldProps = IonicFieldProps<string, {}, CustomProps>;
 
-function LongText({
-                      disabled,
-                      id,
-                      inputRef,
-                      label,
-                      name,
-                      onChange,
-                      placeholder,
-                      readOnly,
-                      value,
-                      error,
-                      errorMessage,
-                      showInlineError,
-                      description,
-                      ...props
-                  }: LongTextFieldProps) {
+function LongText(props: LongTextFieldProps) {
+    let {
+        disabled,
+        id,
+        inputRef,
+        label,
+        name,
+        onChange,
+        placeholder,
+        readOnly,
+        value,
+        error,
+        errorMessage,
+        showInlineError,
+        description,
+        ...otherProps
+    } = props
     let [autogrow, setAutogrow] = useState(false)
     return (
-        <Container
-            error={error}
-            errorMessage={errorMessage}
-            showInlineError={showInlineError}
-            readOnly={readOnly}>
-            <Label
-                position={"stacked"}
-                error={error}
-                errorMessage={errorMessage}
-                showInlineError={showInlineError}
-                readOnly={readOnly}>
-                {label}{description && <><IonNote style={{fontSize: "0.9em"}}>&ensp;{description}</IonNote></>}
-            </Label>
+        <Container {...props}>
+            <Label {...props} label={<>{label}{description && <><IonNote
+                style={{fontSize: "0.9em"}}>&ensp;{description}</IonNote></>}</>}/>
             <IonTextarea
                 autoGrow={autogrow && typeof value === "string" && (value.split("\n").length > 1) && !readOnly && !disabled}
                 disabled={disabled}

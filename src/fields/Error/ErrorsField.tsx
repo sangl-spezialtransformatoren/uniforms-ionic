@@ -7,7 +7,7 @@ export type ErrorsFieldProps = HTMLProps<HTMLDivElement>;
 export const ErrorsField = (props: ErrorsFieldProps) => {
     const {error, schema} = useForm()
     return !error && !props.children ? null : (
-        <Container {...filterDOMProps(props)}>
+        <Container {...props}>
             {props.children}
 
             <ul>

@@ -12,9 +12,15 @@ ion-input {
 }
 
 ion-label.item-has-error {
-  cursor: pointer;
+  cursor: pointer !important;
   pointer-events: all !important;
   color: var(--ion-color-danger-shade) !important;
+}
+
+ion-label.item-not-default {
+  cursor: pointer !important;
+  pointer-events: all !important;
+  color: var(--ion-color-primary);
 }
 
 .textarea-wrapper {

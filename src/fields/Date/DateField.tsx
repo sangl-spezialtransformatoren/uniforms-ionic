@@ -1,5 +1,5 @@
 import React, {Ref, useMemo} from "react"
-import {connectField, filterDOMProps} from "uniforms"
+import {connectField} from "uniforms"
 import {DateInput, DateInputHandle} from "../../components/DateInput/DayInput"
 import {Label} from "../../components/Label/Label"
 import {Container} from "../../components/Container/Container"
@@ -9,24 +9,24 @@ import {IonicFieldProps} from "../../index"
 type CustomProps = {inputRef?: Ref<DateInputHandle>; max?: Date; min?: Date}
 export type DateFieldProps = IonicFieldProps<string, {}, CustomProps>
 
-function Date_({
-                   disabled,
-                   id,
-                   inputRef,
-                   label,
-                   max,
-                   min,
-                   name,
-                   onChange,
-                   placeholder,
-                   readOnly,
-                   value,
-                   error,
-                   errorMessage,
-                   showInlineError,
-                   description,
-                   ...props
-               }: DateFieldProps) {
+function Date_(props: DateFieldProps) {
+    let {
+        disabled,
+        id,
+        inputRef,
+        label,
+        max,
+        min,
+        name,
+        onChange,
+        placeholder,
+        readOnly,
+        value,
+        error,
+        errorMessage,
+        showInlineError,
+        description
+    } = props
 
     let parsedValue = useMemo(() => {
         if (value) {
@@ -35,17 +35,8 @@ function Date_({
     }, [value])
 
     return (
-        <Container
-            error={error}
-            errorMessage={errorMessage}
-            showInlineError={showInlineError}
-            {...filterDOMProps(props)}>
-            <Label error={error}
-                   errorMessage={errorMessage}
-                   showInlineError={showInlineError}
-                   description={description}>
-                {label}
-            </Label>
+        <Container {...props}>
+            <Label {...props}/>
             <DateInput
                 id={id}
                 name={name}

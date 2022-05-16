@@ -10,8 +10,8 @@ type CustomProps = {itemProps?: object, collapsible?: boolean}
 export type NestFieldProps = IonicFieldProps<object, HTMLIonItemGroupElement, CustomProps>
 
 export function createNestField(AutoField: AutoField) {
-    function Nest(
-        {
+    function Nest(props: NestFieldProps) {
+        let {
             children,
             fields,
             itemProps,
@@ -19,30 +19,33 @@ export function createNestField(AutoField: AutoField) {
             description,
             collapsible,
             error,
-            showInlineError
-        }: NestFieldProps) {
+            showInlineError,
+            field,
+            value
+        } = props
         let [open, setOpen] = useState(!collapsible)
 
         return (
             <>
-                {label && <IonListHeader style={{color:(showInlineError && error) ? "var(--ion-color-danger)" : "initial"}}>
-                    <b>{label}</b>
-                    {!!description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
-                    {collapsible &&
-                        <IonButtons style={{position: "absolute", right: 0, height: 10}}>
-                            <IonButton color={"medium"} onClick={() => setOpen(x => !x)}>
-                                <IonIcon icon={open ? caretUp : caretDown} style={{fontSize: "1em"}}/>
-                            </IonButton>
-                        </IonButtons>
-                    }
-                </IonListHeader>
+                {label &&
+                    <IonListHeader style={{color: (showInlineError && error) ? "var(--ion-color-danger)" : "initial"}}>
+                        <b>{label}</b>
+                        {!!description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
+                        {collapsible &&
+                            <IonButtons style={{position: "absolute", right: 0, height: 10}}>
+                                <IonButton color={"medium"} onClick={() => setOpen(x => !x)}>
+                                    <IonIcon icon={open ? caretUp : caretDown} style={{fontSize: "1em"}}/>
+                                </IonButton>
+                            </IonButtons>
+                        }
+                    </IonListHeader>
                 }
                 <Collapse isOpened={open} theme={{collapse: 'NestFieldCollapse'}}>
                     <IonItemGroup className={"nest-container"}>
                         <>
                             {children ||
                                 fields.map(field => (
-                                    <AutoField key={field} name={field} {...itemProps} />
+                                    <AutoField key={field} name={field} {...itemProps}/>
                                 ))}
                         </>
                     </IonItemGroup>

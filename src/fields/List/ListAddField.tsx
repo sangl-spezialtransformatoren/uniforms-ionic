@@ -8,14 +8,14 @@ import {AutoField} from "../Auto/AutoField"
 export type ListAddFieldProps = HTMLFieldProps<unknown, HTMLIonButtonsElement, {initialCount?: number}>
 
 export function createListAddField(AutoField: AutoField) {
-    function ListAdd({
-                         disabled,
-                         initialCount,
-                         name,
-                         readOnly,
-                         value,
-                         ...props
-                     }: ListAddFieldProps) {
+    function ListAdd(props: ListAddFieldProps) {
+        let {
+            disabled,
+            initialCount,
+            name,
+            readOnly,
+            value
+        } = props
         const nameParts = joinName(null, name)
         const parentName = joinName(nameParts.slice(0, -1))
         const parent = useField<{initialCount?: number; maxCount?: number},

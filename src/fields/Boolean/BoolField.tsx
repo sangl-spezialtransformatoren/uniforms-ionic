@@ -8,35 +8,19 @@ import {IonicFieldProps} from "../../index"
 type CustomProps = {inputRef?: Ref<HTMLIonCheckboxElement>}
 export type BoolFieldProps = IonicFieldProps<boolean, {}, CustomProps>;
 
-const Bool: React.FC<BoolFieldProps> = (
-    {
+const Bool: React.FC<BoolFieldProps> = (props) => {
+    let {
         disabled,
         id,
         inputRef,
-        label,
         name,
         onChange,
         readOnly,
         value,
-        error,
-        errorMessage,
-        showInlineError,
-        description
-    }) => {
+    } = props
     return <>
-        <Container
-            error={error}
-            errorMessage={errorMessage}
-            showInlineError={showInlineError}
-            readOnly={readOnly}>
-            <Label
-                error={error}
-                errorMessage={errorMessage}
-                showInlineError={showInlineError}
-                readOnly={readOnly}
-                description={description}>
-                {label}
-            </Label>
+        <Container {...props}>
+            <Label {...props}/>
             <IonCheckbox
                 slot={"end"}
                 checked={value}

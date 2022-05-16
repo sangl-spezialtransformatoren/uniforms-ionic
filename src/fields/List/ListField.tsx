@@ -8,7 +8,7 @@ import {AutoField} from "../Auto/AutoField"
 import {Label} from "../../components/Label/Label"
 import {IonicFieldProps} from "../../index"
 
-type CustomProps = {initialCount?: number; itemProps?: object, children?: React.DOMAttributes<any>["children"]}
+type CustomProps = {initialCount?: number; itemProps?: object, children?: React.ReactChildren}
 export type ListFieldProps = IonicFieldProps<unknown[], {}, CustomProps>;
 
 export function createListField(AutoField: AutoField) {
@@ -16,18 +16,19 @@ export function createListField(AutoField: AutoField) {
     let ListItemField = createListItemField(AutoField)
 
 
-    function List({
-                      children = <ListItemField name="$"/>,
-                      initialCount,
-                      itemProps,
-                      label,
-                      value,
-                      error,
-                      errorMessage,
-                      showInlineError,
-                      readOnly,
-                      description
-                  }: ListFieldProps) {
+    function List(props: ListFieldProps) {
+        let {
+            children = <ListItemField name="$"/>,
+            initialCount,
+            itemProps,
+            label,
+            value,
+            error,
+            errorMessage,
+            showInlineError,
+            readOnly,
+            description
+        } = props
         return (
             <>
                 <IonListHeader style={{paddingRight: 4}}>
@@ -45,7 +46,9 @@ export function createListField(AutoField: AutoField) {
                                 if (isValidElement(child)) {
                                     return cloneElement(child, {
                                         key: `${itemIndex}-${childIndex}`,
-                                        name: child.props.name?.replace("$", "" + itemIndex), ...itemProps
+                                        // @ts-ignore
+                                        name: child.props?.name?.replace("$", "" + itemIndex),
+                                        ...itemProps
                                     })
                                 } else {
                                     return child

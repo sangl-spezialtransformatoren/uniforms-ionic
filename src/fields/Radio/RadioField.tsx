@@ -18,21 +18,22 @@ type CustomProps = {
 
 export type RadioFieldProps = IonicFieldProps<string, {}, CustomProps>
 
-function Radio({
-                   allowedValues,
-                   disabled,
-                   id,
-                   label,
-                   name,
-                   onChange,
-                   readOnly,
-                   transform,
-                   value,
-                   error,
-                   errorMessage,
-                   showInlineError,
-                   description
-               }: RadioFieldProps) {
+function Radio(props: RadioFieldProps) {
+    let {
+        allowedValues,
+        disabled,
+        id,
+        label,
+        name,
+        onChange,
+        readOnly,
+        transform,
+        value,
+        error,
+        errorMessage,
+        showInlineError,
+        description
+    } = props
     return (
         <>
             <IonRadioGroup
@@ -43,14 +44,8 @@ function Radio({
                     }
                 }}>
                 <IonListHeader>
-                    <Label
-                        error={error}
-                        errorMessage={errorMessage}
-                        showInlineError={showInlineError}
-                        readOnly={readOnly}>
-                        <b>{label}</b>
-                        {description && <>&ensp;<IonNote style={{fontSize: "0.9em"}}>{description}</IonNote></>}
-                    </Label>
+                    <Label {...props} label={<><b>{label}</b>{description && <>&ensp;<IonNote
+                        style={{fontSize: "0.9em"}}>{description}</IonNote></>}</>}/>
                 </IonListHeader>
 
                 {allowedValues?.map(item => (

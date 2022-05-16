@@ -9,38 +9,23 @@ import {IonicFieldProps} from "../../index"
 type CustomProps = {inputRef?: Ref<HTMLIonInputElement>, autoComplete?: AutocompleteTypes, type?: TextFieldTypes}
 export type TextFieldProps = IonicFieldProps<string, {}, CustomProps>
 
-function Text(
-    {
+function Text(props: TextFieldProps) {
+    let {
         autoComplete,
         disabled,
         id,
         inputRef,
-        label,
         name,
         onChange,
         placeholder,
         readOnly,
         type,
         value,
-        error,
-        errorMessage,
-        showInlineError,
-        description
-    }: TextFieldProps) {
+    } = props
 
     return (
-        <Container
-            error={error}
-            showInlineError={showInlineError}
-            errorMessage={errorMessage}
-            readOnly={readOnly}>
-            <Label
-                showInlineError={showInlineError}
-                error={error}
-                errorMessage={errorMessage}
-                description={description}>
-                {label}
-            </Label>
+        <Container {...props}>
+            <Label{...props}/>
             <IonInput
                 autocomplete={autoComplete}
                 disabled={disabled}

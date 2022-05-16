@@ -8,39 +8,26 @@ import {IonicFieldProps} from "../../index"
 type CustomProps = {decimal?: boolean; inputRef?: Ref<HTMLIonInputElement>, max: number, min: number, step: number}
 export type NumFieldProps = IonicFieldProps<number, {}, CustomProps>;
 
-function Num({
-                 decimal,
-                 disabled,
-                 id,
-                 inputRef,
-                 label,
-                 max,
-                 min,
-                 name,
-                 onChange,
-                 placeholder,
-                 readOnly,
-                 step,
-                 value,
-                 error,
-                 errorMessage,
-                 showInlineError,
-                 description
-             }: NumFieldProps) {
+function Num(props: NumFieldProps) {
+    let {
+        decimal,
+        disabled,
+        id,
+        inputRef,
+        max,
+        min,
+        name,
+        onChange,
+        placeholder,
+        readOnly,
+        step,
+        value
+    } = props
+
+
     return (
-        <Container
-            error={error}
-            errorMessage={errorMessage}
-            showInlineError={showInlineError}
-            readOnly={readOnly}>
-            <Label
-                error={error}
-                errorMessage={errorMessage}
-                showInlineError={showInlineError}
-                readOnly={readOnly}
-                description={description}>
-                {label}
-            </Label>
+        <Container {...props}>
+            <Label {...props}/>
             <IonInput
                 disabled={disabled}
                 id={id}
@@ -57,7 +44,7 @@ function Num({
                 ref={inputRef}
                 step={(step && step.toString()) || (decimal ? "0.01" : "1")}
                 type="number"
-                value={value ?? ""}
+                value={value}
             />
         </Container>
     )

@@ -13,8 +13,8 @@ Settings.defaultLocale = "de"
 type CustomProps = {inputRef?: Ref<DateInputHandle>; max?: Date; min?: Date}
 export type DateIntervalFieldProps = IonicFieldProps<string, {}, CustomProps>
 
-function DateInterval_(
-    {
+function DateInterval_(props: DateIntervalFieldProps) {
+    let {
         disabled,
         id,
         inputRef,
@@ -30,8 +30,7 @@ function DateInterval_(
         errorMessage,
         showInlineError,
         description
-    }: DateIntervalFieldProps) {
-
+    } = props
     let value = useMemo(() => {
         if (stringValue) {
             return Interval.fromISO(stringValue)
@@ -65,17 +64,8 @@ function DateInterval_(
         setModalOpen(false)
     }, [setSelectedStartDate, setModalOpen])
     return <>
-        <Container
-            error={error}
-            errorMessage={errorMessage}
-            showInlineError={showInlineError}>
-            <Label
-                error={error}
-                errorMessage={errorMessage}
-                showInlineError={showInlineError}
-                description={description}>
-                {label}
-            </Label>
+        <Container {...props}>
+            <Label {...props}/>
             <IonButtons slot={"end"}>
                 <IonButton
                     onClick={() => setModalOpen(true)}

@@ -7,7 +7,8 @@ import {AutoField} from "../Auto/AutoField"
 export type ListDelFieldProps = HTMLFieldProps<unknown, HTMLSpanElement>;
 
 export function createListDelField(AutoField: AutoField) {
-    function ListDel({disabled, name, readOnly, ...props}: ListDelFieldProps) {
+    function ListDel(props: ListDelFieldProps) {
+        let {disabled, name, readOnly} = props
         const nameParts = joinName(null, name)
         const nameIndex = +nameParts[nameParts.length - 1]
         const parentName = joinName(nameParts.slice(0, -1))
@@ -37,7 +38,8 @@ export function createListDelField(AutoField: AutoField) {
         }
 
         return (
-            <IonButtons style={{position: "absolute", left: 4, marginTop: 11, visibility: readOnly || disabled && "hidden"}}>
+            <IonButtons
+                style={{position: "absolute", left: 4, marginTop: 11, visibility: readOnly || disabled && "hidden"}}>
                 <IonButton onClick={onAction} onKeyDown={onAction} tabIndex={0} className={"list-buttons"}>
                     <IonIcon icon={removeCircleOutline}/>
                 </IonButton>

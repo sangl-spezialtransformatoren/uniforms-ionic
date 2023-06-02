@@ -31,7 +31,7 @@ function Text(props: TextFieldProps) {
                 disabled={disabled}
                 id={id}
                 name={name}
-                onIonChange={event => onChange(event.detail.value || undefined)}
+                onIonInput={event => onChange(event.detail.value || undefined)}
                 placeholder={placeholder}
                 readonly={readOnly}
                 ref={inputRef}

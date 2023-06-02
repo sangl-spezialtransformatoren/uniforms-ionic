@@ -35,7 +35,7 @@ function LongText(props: LongTextFieldProps) {
                 disabled={disabled}
                 id={id}
                 name={name}
-                onIonChange={event => {
+                onIonInput={event => {
                     setAutogrow(true)
                     event.detail.value && onChange(event.detail.value)
                 }}

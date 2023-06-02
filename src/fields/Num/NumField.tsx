@@ -34,7 +34,7 @@ function Num(props: NumFieldProps) {
                 max={max !== undefined ? `${max}` : undefined}
                 min={min !== undefined ? `${min}` : undefined}
                 name={name}
-                onIonChange={event => {
+                onIonInput={event => {
                     const parse = decimal ? parseFloat : parseInt
                     const value = event.detail.value ? parse(event.detail.value) : undefined
                     onChange(value ? (isNaN(value) ? undefined : value) : undefined)
